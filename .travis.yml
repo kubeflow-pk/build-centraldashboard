@@ -2,10 +2,7 @@ dist: centraldashboard
 
 env:
   global:
-    - REGISTRY_NAME=1049651653
-    - REGISTRY_PWD=lmg7831336
-    - REGISTRY=docker.io/1049651653
-    - IMAGE_NAME=centraldashboard:v1.0.0-g3ec0de71
+    - IMAGE_NAME=pkskubeflow/centraldashboard:v1.0.0-g3ec0de71
     - CODE_TAG=v1.0
     
 arch:
@@ -20,8 +17,6 @@ before_install:
 
 script:
   - cd kubeflow/components/centraldashboard
-  - docker build -t ${REGISTRY}/${IMAGE_NAME} -f Dockerfile .
-  
-after_success:
-- docker login -u ${REGISTRY_NAME} -p ${REGISTRY_PWD} ${REGISTRY}
-- docker push ${REGISTRY}/${IMAGE_NAME}
+  - docker build -t ${IMAGE_NAME} -f Dockerfile .
+  - docker login -u ${DOCKER_USER} -p ${DOCKER_PWD}
+  - docker push ${IMAGE_NAME}
