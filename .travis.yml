@@ -4,7 +4,10 @@ env:
   global:
     - IMAGE_NAME=pkskubeflow/centraldashboard:v1.0.0-g3ec0de71
     - CODE_TAG=v1.0
-    
+   
+arch:
+  - arm64
+  
 services:
   - docker
 
