@@ -30,4 +30,4 @@ before_install:
 script:
   - cd kubeflow/components/centraldashboard
   - docker login -u ${DOCKER_USER} -p ${DOCKER_PWD}
-  - docker buildx build --push --platform linux/amd64,linux/arm64 -t ${IMAGE_NAME} -f Dockerfile .
+  - docker buildx build --push --platform linux/arm64 -t ${IMAGE_NAME} -f Dockerfile .
