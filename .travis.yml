@@ -1,7 +1,5 @@
 dist: bionic
 
-dist: bionic
-
 env:
   global:
     - REGISTRY="docker.io"
@@ -35,11 +33,5 @@ before_install:
   - git clone -b ${CODE_TAG} --depth 1 https://github.com/kubeflow/kubeflow.git
 
 script:
-
-
   - cd kubeflow/components/centraldashboard
-  - if [ "${TRAVIS_CPU_ARCH}" = "amd64" ]; then \
-      docker buildx build --push --platform linux/amd64 -t ${IMAGE_TAG} -f Dockerfile . ; \
-    else \
-      docker buildx build --push --platform linux/arm64 -t ${IMAGE_TAG} -f Dockerfile . ; \
-    fi
+  - if [ "${TRAVIS_CPU_ARCH}" = "amd64" ]; then docker buildx build --push --platform linux/amd64 -t ${IMAGE_TAG} -f Dockerfile . ; else docker buildx build --push --platform linux/arm64 -t ${IMAGE_TAG} -f Dockerfile . ; fi
